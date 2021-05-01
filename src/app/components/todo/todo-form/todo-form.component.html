@@ -1,0 +1,101 @@
+<h4>{{ todo.id ? 'Update' : 'Add' }} Todo</h4>
+
+<form (ngSubmit)="updateTodoHandler($event)" #form="ngForm">
+  <table>
+    <tbody>
+      <tr>
+        <th align="left">
+          <label for="name">Name</label>
+        </th>
+        <td>
+          <input id="name" type="text" name="name" [(ngModel)]="todo.name" #name="ngModel" required />
+        </td>
+        <td>
+          <ng-container *ngIf="name.invalid && (name.dirty || name.touched)">
+            <ng-container *ngIf="name.errors?.required">
+              Name is required.
+            </ng-container>
+          </ng-container>
+        </td>
+      </tr>
+      <tr>
+        <th align="left">
+          <label for="description">description</label>
+        </th>
+        <td>
+          <textarea id="description" name="description" [(ngModel)]="todo.description" #description="ngModel"
+            required></textarea>
+        </td>
+        <td>
+          <ng-container *ngIf="description.invalid && (description.dirty || description.touched)">
+            <ng-container *ngIf="description.errors?.required">
+              Description is required.
+            </ng-container>
+          </ng-container>
+        </td>
+      </tr>
+      <tr>
+        <th align="left">
+          <label for="type">Type</label>
+        </th>
+        <td>
+          <select id="type" name="type" [(ngModel)]="todo.type" #type="ngModel" required>
+            <option *ngFor="let type of types" [value]="type">{{type}}
+            </option>
+          </select>
+        </td>
+        <td>
+          <ng-container *ngIf="type.invalid && (type.dirty || type.touched)">
+            <ng-container *ngIf="type.errors?.required">
+              Type is required.
+            </ng-container>
+          </ng-container>
+        </td>
+      </tr>
+      <tr>
+        <th align="left">
+          <label>Confidential</label>
+        </th>
+        <td>
+          <label for="confidential1">Yes</label>
+          <input id="confidential1" type="radio" name="confidential" value="Yes" [(ngModel)]="todo.confidential"
+            #confidential="ngModel" />
+          <label for="confidential2">No</label>
+          <input id="confidential2" type="radio" name="confidential" value="No" [(ngModel)]="todo.confidential"
+            #confidential="ngModel" />
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <th align="left">
+          <label>Remind</label>
+        </th>
+        <td>
+          <label for="remind">Yes</label>
+          <input id="remind" type="checkbox" name="checkbox" [(ngModel)]="todo.remind" #remind="ngModel" />
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <th align="left">
+          <label for="date">Date</label>
+        </th>
+        <td>
+          <input id="date" type="date" name="date" [(ngModel)]="todo.date" #date="ngModel" required />
+        </td>
+        <td>
+          <ng-container *ngIf="date.invalid && (date.dirty || date.touched)">
+            <ng-container *ngIf="date.errors?.required">
+              Date is required.
+            </ng-container>
+          </ng-container>
+        </td>
+      </tr>
+      <tr>
+        <th colspan="2" align="right">
+          <button type="submit">{{ todo.id ? 'Update' : 'Add' }}</button>
+        </th>
+      </tr>
+    </tbody>
+  </table>
+</form>

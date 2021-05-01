@@ -1,0 +1,32 @@
+<h3>Todos <button (click)="addTodoHandler()">New</button></h3>
+<app-todo-form *ngIf="currentTodo" [todo]="currentTodo" (onAddOrUpdate)="onUpdateTodoHandler($event)"></app-todo-form>
+<br />
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>description</th>
+      <th>Type</th>
+      <th>Confidential</th>
+      <th>Remind</th>
+      <th>Date</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let todo of todos">
+      <td>{{ todo.id }}</td>
+      <td>{{ todo.name }}</td>
+      <td>{{ todo.description }}</td>
+      <td>{{ todo.type }}</td>
+      <td>{{ todo.confidential }}</td>
+      <td>{{ todo.remind }}</td>
+      <td>{{ todo.date }}</td>
+      <td>
+        <button type="button" (click)="selectTodoHandler(todo.id)">Edit</button>
+        <button type="button" (click)="deleteTodoHandler(todo.id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

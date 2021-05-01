@@ -1,0 +1,19 @@
+{
+  "ci":{
+    "collect":{
+      "url": ["http://localhost:4000/"],
+      "startServerCommand":"yarn serve:ssr"
+    },
+    "assert":{
+      "assertions":{
+        "uses-long-cache-ttl":"off",
+        "uses-http2":"off"
+      }
+    },
+    "upload":{
+      "target":"filesystem",
+      "outputDir":"./dist/angular/_lighthouse",
+      "reportFilenamePattern": "%%PATHNAME%%.report.%%EXTENSION%%"
+    }
+  }
+}
