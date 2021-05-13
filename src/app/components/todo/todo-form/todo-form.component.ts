@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Todo, TYPES } from '../todo.service';
 
 @Component({
@@ -18,6 +19,8 @@ export class TodoFormComponent {
 
   types = TYPES;
 
+  constructor(private _snackBar: MatSnackBar) { }
+
   updateTodoHandler(event: any) {
     event.preventDefault();
     for (const control in this.form.controls) {
@@ -26,7 +29,7 @@ export class TodoFormComponent {
     if (this.form.valid) {
       this.onAddOrUpdate.emit(this.todo);
     } else {
-      alert("All fields are required.");
+      this._snackBar.open('All fields are required.', undefined, { duration: 5000 });
     }
   }
 }

@@ -1,32 +1,58 @@
-<h3>Todos <button (click)="addTodoHandler()">New</button></h3>
-<app-todo-form *ngIf="currentTodo" [todo]="currentTodo" (onAddOrUpdate)="onUpdateTodoHandler($event)"></app-todo-form>
+<h3>Todos <button mat-raised-button color="primary" (click)="addTodoHandler()">New</button></h3>
+<app-todo-view *ngIf="currentTodo && currentEvent === 'view'" [todo]="currentTodo" (onClose)="currentTodo = null">
+</app-todo-view>
+<app-todo-form *ngIf="currentTodo && currentEvent === 'edit'" [todo]="currentTodo"
+  (onAddOrUpdate)="onUpdateTodoHandler($event)"></app-todo-form>
 <br />
-<table>
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Name</th>
-      <th>description</th>
-      <th>Type</th>
-      <th>Confidential</th>
-      <th>Remind</th>
-      <th>Date</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let todo of todos">
-      <td>{{ todo.id }}</td>
-      <td>{{ todo.name }}</td>
-      <td>{{ todo.description }}</td>
-      <td>{{ todo.type }}</td>
-      <td>{{ todo.confidential }}</td>
-      <td>{{ todo.remind }}</td>
-      <td>{{ todo.date }}</td>
-      <td>
-        <button type="button" (click)="selectTodoHandler(todo.id)">Edit</button>
-        <button type="button" (click)="deleteTodoHandler(todo.id)">Delete</button>
-      </td>
-    </tr>
-  </tbody>
+<table #table mat-table [dataSource]="todos" width="100%" class="mat-elevation-z8">
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> Id </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef> Description </th>
+    <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="type">
+    <th mat-header-cell *matHeaderCellDef> Type </th>
+    <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="confidential">
+    <th mat-header-cell *matHeaderCellDef> Confidential </th>
+    <td mat-cell *matCellDef="let element"> {{element.confidential}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="remind">
+    <th mat-header-cell *matHeaderCellDef> Remind </th>
+    <td mat-cell *matCellDef="let element"> {{element.remind}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef> Date </th>
+    <td mat-cell *matCellDef="let element"> {{element.date | date:'yyyy-MM-dd'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef> Actions </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-raised-button color="primary" type="button"
+        (click)="selectTodoHandler(element.id, 'view')">View</button>
+      &nbsp;
+      <button mat-raised-button color="primary" type="button"
+        (click)="selectTodoHandler(element.id, 'edit')">Edit</button>
+      &nbsp;
+      <button mat-raised-button color="warn" type="button" (click)="deleteTodoHandler(element.id)">Delete</button>
+    </td>
+  </ng-container>
 </table>
