@@ -1,81 +1,77 @@
+<h4 mat-dialog-title>{{ todo.id ? 'Update' : 'Add' }} Todo</h4>
+
 <form (ngSubmit)="updateTodoHandler($event)" #form="ngForm">
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>{{ todo.id ? 'Update' : 'Add' }} Todo</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <mat-divider></mat-divider>
-      <br />
-      <br />
-      <mat-form-field appearance="fill">
-        <mat-label>Name</mat-label>
-        <input matInput id="name" name="name" [(ngModel)]="todo.name" #name="ngModel" required>
-        <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">
-          <ng-container *ngIf="name.errors?.required">
-            Name is required.
-          </ng-container>
-        </mat-error>
-      </mat-form-field>
-      <br />
-      <br />
-      <mat-form-field appearance="fill">
-        <mat-label>Description</mat-label>
-        <textarea matInput id="description" name="description" [(ngModel)]="todo.description" #description="ngModel"
-          required></textarea>
-        <mat-error *ngIf="description.invalid && (description.dirty || description.touched)">
-          <ng-container *ngIf="description.errors?.required">
-            Description is required.
-          </ng-container>
-        </mat-error>
-      </mat-form-field>
-      <br />
-      <br />
-      <mat-form-field appearance="fill">
-        <mat-label>Type</mat-label>
-        <mat-select id="type" name="type" [(ngModel)]="todo.type" #type="ngModel" required>
-          <mat-option *ngFor="let type of types" [value]="type">
-            {{type}}
-          </mat-option>
-        </mat-select>
-        <mat-error *ngIf="type.invalid && (type.dirty || type.touched)">
-          <ng-container *ngIf="type.errors?.required">
-            Type is required.
-          </ng-container>
-        </mat-error>
-      </mat-form-field>
-      <br />
-      <br />
-      <mat-label>Confidential</mat-label>
+  <div mat-dialog-content>
+    <mat-divider></mat-divider>
+    <br />
+    <br />
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput id="name" name="name" [(ngModel)]="todo.name" #name="ngModel" required>
+      <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">
+        <ng-container *ngIf="name.errors?.required">
+          Name is required.
+        </ng-container>
+      </mat-error>
+    </mat-form-field>
+    <br />
+    <br />
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea matInput id="description" name="description" [(ngModel)]="todo.description" #description="ngModel"
+        required></textarea>
+      <mat-error *ngIf="description.invalid && (description.dirty || description.touched)">
+        <ng-container *ngIf="description.errors?.required">
+          Description is required.
+        </ng-container>
+      </mat-error>
+    </mat-form-field>
+    <br />
+    <br />
+    <mat-form-field appearance="fill">
+      <mat-label>Type</mat-label>
+      <mat-select id="type" name="type" [(ngModel)]="todo.type" #type="ngModel" required>
+        <mat-option *ngFor="let type of types" [value]="type">
+          {{type}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="type.invalid && (type.dirty || type.touched)">
+        <ng-container *ngIf="type.errors?.required">
+          Type is required.
+        </ng-container>
+      </mat-error>
+    </mat-form-field>
+    <br />
+    <br />
+    <mat-label>Confidential</mat-label>
+    &nbsp;
+    <mat-radio-group name="confidential" [(ngModel)]="todo.confidential" #confidential="ngModel">
+      <mat-radio-button value="Yes">Yes</mat-radio-button>
       &nbsp;
-      <mat-radio-group name="confidential" [(ngModel)]="todo.confidential" #confidential="ngModel">
-        <mat-radio-button value="Yes">Yes</mat-radio-button>
-        &nbsp;
-        <mat-radio-button value="No">No</mat-radio-button>
-      </mat-radio-group>
-      <br />
-      <br />
-      <mat-label>Remind</mat-label>
-      &nbsp;
-      <mat-checkbox id="remind" type="checkbox" name="checkbox" [(ngModel)]="todo.remind" #remind="ngModel">
-      </mat-checkbox>
-      <br />
-      <br />
-      <mat-form-field appearance="fill">
-        <mat-label>Date</mat-label>
-        <input matInput id="date" name="date" [(ngModel)]="todo.date" #date="ngModel" required
-          [matDatepicker]="picker" />
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-        <mat-error *ngIf="date.invalid && (date.dirty || date.touched)">
-          <ng-container *ngIf="date.errors?.required">
-            Date is required.
-          </ng-container>
-        </mat-error>
-      </mat-form-field>
-      <mat-divider></mat-divider>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button color="primary" type="submit">{{ todo.id ? 'Update' : 'Add' }}</button>
-    </mat-card-actions>
-  </mat-card>
+      <mat-radio-button value="No">No</mat-radio-button>
+    </mat-radio-group>
+    <br />
+    <br />
+    <mat-label>Remind</mat-label>
+    &nbsp;
+    <mat-checkbox id="remind" type="checkbox" name="checkbox" [(ngModel)]="todo.remind" #remind="ngModel">
+    </mat-checkbox>
+    <br />
+    <br />
+    <mat-form-field appearance="fill">
+      <mat-label>Date</mat-label>
+      <input matInput id="date" name="date" [(ngModel)]="todo.date" #date="ngModel" required [matDatepicker]="picker" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="date.invalid && (date.dirty || date.touched)">
+        <ng-container *ngIf="date.errors?.required">
+          Date is required.
+        </ng-container>
+      </mat-error>
+    </mat-form-field>
+    <mat-divider></mat-divider>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button color="primary" type="submit">{{ todo.id ? 'Update' : 'Add' }}</button>
+  </div>
 </form>

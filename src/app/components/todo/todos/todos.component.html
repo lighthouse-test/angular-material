@@ -1,8 +1,6 @@
 <h3>Todos <button mat-raised-button color="primary" (click)="addTodoHandler()">New</button></h3>
 <app-todo-view *ngIf="currentTodo && currentEvent === 'view'" [todo]="currentTodo" (onClose)="currentTodo = null">
 </app-todo-view>
-<app-todo-form *ngIf="currentTodo && currentEvent === 'edit'" [todo]="currentTodo"
-  (onAddOrUpdate)="onUpdateTodoHandler($event)"></app-todo-form>
 <br />
 <table #table mat-table [dataSource]="todos" width="100%" class="mat-elevation-z8">
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
