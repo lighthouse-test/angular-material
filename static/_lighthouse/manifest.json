@@ -1,0 +1,41 @@
+[
+  {
+    "url": "http://localhost:35907/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/runner/work/angular-material/angular-material/dist/angular/_lighthouse/_.report.html",
+    "jsonPath": "/home/runner/work/angular-material/angular-material/dist/angular/_lighthouse/_.report.json",
+    "summary": {
+      "performance": 0.68,
+      "accessibility": 0.97,
+      "best-practices": 1,
+      "seo": 1,
+      "pwa": 0.3
+    }
+  },
+  {
+    "url": "http://localhost:35907/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/runner/work/angular-material/angular-material/dist/angular/_lighthouse/_.report.html",
+    "jsonPath": "/home/runner/work/angular-material/angular-material/dist/angular/_lighthouse/_.report.json",
+    "summary": {
+      "performance": 0.88,
+      "accessibility": 0.97,
+      "best-practices": 1,
+      "seo": 1,
+      "pwa": 0.3
+    }
+  },
+  {
+    "url": "http://localhost:35907/",
+    "isRepresentativeRun": true,
+    "htmlPath": "/home/runner/work/angular-material/angular-material/dist/angular/_lighthouse/_.report.html",
+    "jsonPath": "/home/runner/work/angular-material/angular-material/dist/angular/_lighthouse/_.report.json",
+    "summary": {
+      "performance": 0.89,
+      "accessibility": 0.97,
+      "best-practices": 1,
+      "seo": 1,
+      "pwa": 0.3
+    }
+  }
+]
